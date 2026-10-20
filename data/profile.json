@@ -1,0 +1,71 @@
+{
+    "id": "profile",
+    "name": "Luis Fernando González Molina",
+    "birthdate": "03/04/2000",
+    "title": "Ingeniero de Sistemas | Desarrollador de Software | Analista QA | Analista TI | Analista de Datos",
+    "summary": "Ingeniero de Sistemas con experiencia en desarrollo de software, análisis funcional y automatización de procesos. He participado en proyectos de desarrollo web, gestión y análisis de bases de datos, creación de dashboards con Power BI y tambien con Metabase y MySQL y desarrollo de soluciones basadas en Inteligencia Artificial utilizando Python y modelos de lenguaje. Me enfoco en crear soluciones tecnológicas que optimicen procesos, mejoren la productividad y aporten valor al negocio. Disfruto aprender nuevas tecnologías y trabajar en equipo bajo metodologías ágiles como Scrum y Kanban.",
+    "professional_goal": "Busco formar parte de un equipo donde pueda aportar mis conocimientos en desarrollo de software, automatización, análisis de datos e Inteligencia Artificial, enfrentando nuevos desafíos que impulsen mi crecimiento profesional y generen valor para la organización.",
+    "location": "Cali, Valle del Cauca, Colombia",
+    "years_of_experience": 4,
+    "Availability to start":"Inmediata",
+    "specialties": [
+    "Desarrollo de Software",
+    "Análisis Funcional",
+    "Automatización de Procesos",
+    "Inteligencia Artificial",
+    "Análisis de Datos",
+    "Desarrollo Full Stack",
+    "Soporte TI",
+    "Analista QA"
+],
+    "Work_arrangement": [
+
+        "Presencial o hibrido: Cali Valle del Cauca, Jamundi Valle del Cauca, Villa Rica Cauca, Puerto Tejada, Santander de Quilichao",
+        "Remoto: Cualquier destino"
+
+    ],
+    "main_technologies": [
+    "Python",
+    "Java",
+    "PHP",
+    "JavaScript",
+    "HTML",
+    "CSS",
+    "MySQL",
+    "Power BI",
+    "Metabase",
+    "Streamlit",
+    "Ollama",
+    "Groq",
+    "Git",
+    "Firebase",
+    "SQLite",
+    "Office 365",
+    "Rfast",
+    "Power Automate",
+    "Power Apps",
+    "Azure",
+    "Jira",
+    "SAP Business One",
+    "N8N"
+
+],
+    "languages": [
+    {
+        "language": "Español",
+        "level": "Nativo"
+    },
+    {
+        "language": "Inglés",
+        "level": "B1"
+    }
+],
+    "photo": [
+
+        "https://drive.google.com/file/d/1TVNxXJhZDajS-O6W7cnY-6giAawxnfVi/view?usp=sharing",
+        "https://drive.google.com/file/d/1SQGBXTH2ZtVS-2CyXHV_x6chsJtv5oku/view?usp=sharing",
+        "https://drive.google.com/file/d/19BKVDYzE1I3iqoXlp9jxhjFT6UiSs1dq/view?usp=sharing",
+        "https://drive.google.com/file/d/1RDe3vza4w9eRz58fePb3uv7PchWm9rZc/view?usp=sharing"
+
+    ]
+}

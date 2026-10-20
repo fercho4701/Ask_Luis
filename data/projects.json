@@ -1,0 +1,53 @@
+{
+    "projects": [
+        {
+            "name": "Enterprise-Document-AI",
+            "description": "Un asistente de documentos impulsado por IA capaz de procesar documentos PDF empresariales, extraer texto e imágenes, crear una base de conocimiento semántico y responder preguntas mediante la Generación Aumentada por Recuperación (RAG)",
+            "type": "Inteligencia Artificial",
+            "github":"https://github.com/fercho4701/Enterprise-Document-AI",
+            "technologies": [
+                "Python",
+                "chroma_db",
+                "Groq",
+                "Streamlit",
+                "RAG"
+            ],
+            "url": "https://enterprise-document-ai-82jcbk65izdwsy7phbofb7.streamlit.app/",
+            "image": "assets/proyectos/Enterprise-Document-AI.JPG"
+        },
+
+        {
+            "name":"Caja_Registradora.",
+            "description":"Sistema web para gestión de productos, inventario, clientes y facturación con IVA (19%), desarrollado en PHP / Laravel 11 con MySQL",
+            "type": "Gestion de Inventarios",
+            "github":"https://github.com/fercho4701/Caja_Registradora",
+            "technologies": [
+                "MySQL",
+                "PHP",
+                "Laravel"
+            ],
+            "url":"",
+            "image": ""
+
+        },
+
+           {
+            "name":"Luis-AI-Recruiter",
+            "description":"Plataforma interactiva impulsada por IA que transforma mi hoja de vida en una experiencia conversacional, facilitando el acceso a mi trayectoria y conocimientos profesionales",
+            "type": "Inteligencia Artificial",
+            "github":"",
+
+            "technologies": [
+                "Python",
+                "Json",
+                "Groq",
+                "Streamlit"
+                
+            ],
+            "url":"",
+            "image": ""
+
+        }
+
+    ]
+}

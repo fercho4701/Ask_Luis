@@ -1,0 +1,90 @@
+{
+    "experiences": [
+        {
+            "company": "Freelancer",
+            "position": "Desarrollador de Software",
+            "location": "Cali, Valle del Cauca, Colombia / Villa Rica Cauca",
+            "start_date": "03/03/2021",
+            "end_date": "Actualidad",
+            "description": "Diseño y administración de bases de datos relacionales y no relacionales utilizando MySQL y MongoDB. Construcción e implementación de aplicaciones móviles integradas con servicios en la nube. Diseño, desarrollo y mantenimiento de componentes web y APIs utilizando Python, JavaScript, PHP, HTML y CSS. Aplicación de buenas prácticas de programación, control de versiones con Git, refactorización y corrección de errores. Desarrollo de módulos para sistemas de gestión de inventarios.",
+            "technologies": [
+                "Python",
+                "JavaScript",
+                "Java",
+                "Excel",
+                "PHP",
+                "HTML",
+                "CSS",
+                "MySQL",
+                "MongoDB",
+                "Firebase",
+                "Azure",
+                "Git",
+                "PostgreSQL",
+                "Laravel"
+            ],
+            "achievements": [
+                "Optimización del tiempo de consulta y control de inventarios en un 40% para comercios locales."
+            ]
+        },
+        {
+            "company": "Comfandi",
+            "Reason_for_withdrawal":"Fin de contrato de pasantias por seis meses",
+            "position": "Analista Funcional",
+            "contract_type":"Contrato de práctica laboral",
+            "location": "Cali Valle del Cauca, Carrera 23 # 26B-46",
+            "start_date": "01/11/2023",
+            "end_date": "01/04/2024",
+            "description": "Liderazgo en el desarrollo de instrumentos blandos para las IPS mediante Visual Basic for Applications (VBA), orientados a optimizar procesos de atención en salud. Gestión del análisis funcional, no funcional e integral de proyectos basados en SAP, incluyendo la recolección, documentación y validación de requerimientos para la implementación de mejoras. Coordinación de equipos durante la ejecución de pruebas funcionales y de regresión, asegurando la identificación, reporte y seguimiento de errores. Formulación y presentación de propuestas de mejora para la aplicación Mi Comfandi en el área de salud, incluyendo la integración de un geolocalizador para facilitar el acceso de los usuarios.",
+            "technologies": [
+                "SAP",
+                "Excel",
+                "Jira",
+                "SharePoint",
+                "Word",
+                "Canva",
+                "HTML",
+                "CSS"
+
+            ],
+            "achievements": [
+               "Desarrollo e implementación de un sistema de instrumentos blandos que mejoró en un 25% la atención y comprensión de los pacientes en el área de salud."
+            ]
+        },
+
+
+        {
+    "company": "Hospital Joaquín Paz Borrero",
+    "Reason_for_withdrawal":"Terminación de contrato debido a una reestructuración del área de facturación.",
+    "position": "Ingeniero de Sistemas",
+    "location": "Cali Valle del Cauca, Colombia, Calle 72A # 7A-00 (esquina con la Carrera 7A Bis)",
+    "contract_type":"Convenio de Afiliación Sindical.",
+    "start_date": "03/06/2025",
+    "end_date": "02/02/2026",
+    "description": "Apoyo en procesos de facturación en salud, validando información de servicios, CUPS, contratos y registros asociados. Gestión, validación y control de calidad de datos mediante MySQL, relacionados con contratos, CUPS de facturación y atención en IPS. Análisis de información para la optimización de procesos administrativos y operativos en el entorno hospitalario. Desarrollo de dashboards para el seguimiento y control de contratos, CUPS y servicios utilizando Metabase y Power BI. Diseño y desarrollo de scripts en Python y VBA, así como flujos en n8n, para la automatización de procesos operativos repetitivos, extracción y tipificación masiva de datos y generación de reportes automáticos. Validación de información y generación de informes sobre bases de datos de gran volumen utilizando MySQL. Apoyo en el desarrollo web del área de facturación del Hospital Alfonso López.",
+    "technologies": [
+        "MySQL",
+        "Excel",
+        "Python",
+        "CSS",
+        "HTML",
+        "Metabase",
+        "RFAST",
+        "PHP",
+        "N8N",
+        "Power Automate",
+        "Automatización con IA"
+
+    ],
+    "achievements": [
+    "Incremento del 80% en la productividad mediante el desarrollo de dashboards interactivos para la validación de CUPS y contratos de facturación."
+]
+},
+
+{
+    "CV": "https://drive.google.com/file/d/1n_PrL9J-iASgv1QActgAsx9ZhcgP_FO-/view?usp=sharing"
+}
+
+
+    ]
+}

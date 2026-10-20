@@ -1,0 +1,52 @@
+{
+    "Education": [
+        {
+            "University": "Institución Universitaria Antonio José Camacho",
+            "Professional level": "Pregrado",
+            "Training":"Ingenieria de Sistemas",
+            "semesters": "11",
+            "Year concluded": "12/12/2024",
+            "Place": "Cali, Colombia",
+            "image": "https://drive.google.com/file/d/1cBOg6lO746q7PS7NAeg4pRKM2IamdDmT/view?usp=drive_link"
+        },
+
+        {
+            "University": "Institución Universitaria Antonio José Camacho",
+            "Professional level": "Diplomado",
+            "Training":"Ciberseguridad Digital",
+            "Hourly workload": "120 Horas",
+            "Year concluded": "13/11/2024",
+            "Place": "Cali, Colombia",
+            "image": "https://drive.google.com/file/d/1FhYB5cF7IiSHZ2GyHTmkQl2L5gKTXUC2/view?usp=drive_link"
+        },
+
+          {
+            "University": "Big School",
+            "Professional level": "Certificado",
+            "Training":"Curso de Iniciación al desarrollo con IA",
+            "Hourly workload": "06 Horas",
+            "Year concluded": "06/02/2026",
+            "Place": "Virtual",
+            "image": "https://drive.google.com/file/d/1xpfqIWJnRNPxie24Qtt2kngKvbKJKo1X/view?usp=drive_link"
+        },
+
+        {
+            "University": "Aula Informática",
+            "Professional level": "Certificado",
+            "Training":"Ensamble, Reparación y Mantenimiento de Computadores",
+            "Hourly workload": "24 Horas",
+            "Year concluded": "14/11/2019",
+            "Place": "Cali, Colombia",
+            "image": "https://drive.google.com/file/d/1j3icKeY_epTD0hyKCQqnPwOaLMQz-bzY/view?usp=sharing"
+        }
+
+
+
+
+
+
+    ]
+
+
+
+}
