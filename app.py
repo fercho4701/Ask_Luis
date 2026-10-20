@@ -11,7 +11,8 @@ from llm.groq_service import GroqService
 # CONFIGURACIÓN
 
 
-LOGO_PATH = "assets/logo.png"
+from pathlib import Path
+LOGO_PATH = str(Path(__file__).resolve().parent / "assets" / "logo.png")
 
 st.set_page_config(
     page_title="Luis AI Recruiter",
@@ -23,7 +24,7 @@ st.set_page_config(
 SUGGESTIONS = [
     "👨‍💻 ¿Cuál es el perfil profesional de Luis?",
     "🛠️ ¿Qué tecnologías domina?",
-    "🚀 ¿Qué proyectos ha desarrollado?",
+    "🚀 ¿Qué experiencia tiene?",
     "🎯 ¿Por qué debería contratarlo?",
 ]
 
@@ -338,7 +339,7 @@ with hero_col:
         """
         <div class="hero">
             <div class="badge"><span class="dot"></span> Asistente disponible</div>
-            <h1 class="main-title">Luis AI Recruiter</h1>
+            <h1 class="main-title">Ask luis</h1>
             <p class="subtitle">
                 Portfolio inteligente de <b>Luis Fernando González Molina</b>.
                 Pregunta lo que quieras sobre su experiencia, habilidades y proyectos.
