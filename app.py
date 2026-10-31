@@ -12,7 +12,9 @@ from llm.groq_service import GroqService
 
 
 from pathlib import Path
-LOGO_PATH = str(Path(__file__).resolve().parent / "assets" / "logo.png")
+
+BASE_DIR = Path(__file__).resolve().parent
+LOGO_PATH = BASE_DIR / "assets" / "logo.png"
 
 st.set_page_config(
     page_title="Luis AI Recruiter",
