@@ -1,6 +1,5 @@
 
 import os
-import streamlit as st
 from dotenv import load_dotenv
 from groq import Groq
 
@@ -10,16 +9,11 @@ load_dotenv()
 class GroqService:
 
     def __init__(self):
-        # Primero intenta obtener la clave desde Streamlit Cloud
-        api_key = st.secrets.get("GROQ_API_KEY")
-
-        # Si no está disponible, utiliza el archivo .env local
-        if not api_key:
-            api_key = os.getenv("GROQ_API_KEY")
+        api_key = os.getenv("GROQ_API_KEY")
 
         if not api_key:
             raise ValueError(
-                "Falta configurar GROQ_API_KEY en Streamlit Secrets o .env."
+                "Falta configurar GROQ_API_KEY en el archivo .env."
             )
 
         self.client = Groq(api_key=api_key)
@@ -40,3 +34,4 @@ class GroqService:
         )
 
         return response.choices[0].message.content
+
