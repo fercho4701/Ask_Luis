@@ -5,6 +5,7 @@ import streamlit as st
 from services.knowledge_service import KnowledgeService
 from services.prompt_service import PromptService
 from llm.groq_service import GroqService
+from PIL import Image
 
 
 
@@ -16,9 +17,17 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 LOGO_PATH = BASE_DIR / "assets" / "logo.png"
 
+logo = None
+
+if LOGO_PATH.is_file():
+    try:
+        logo = Image.open(LOGO_PATH).convert("RGBA")
+    except Exception as e:
+        print(f"Error cargando el logo: {e}")
+
 st.set_page_config(
     page_title="Luis AI Recruiter",
-    page_icon=LOGO_PATH if os.path.exists(LOGO_PATH) else "🤖",
+    page_icon=logo if logo else "🤖",
     layout="centered",
     initial_sidebar_state="collapsed",
 )
@@ -329,10 +338,14 @@ with top_right:
         st.session_state.dark_mode = dark
         st.rerun()
 
-if os.path.exists(LOGO_PATH):
-    logo_col, hero_col = st.columns([1, 4], vertical_alignment="center")
+if logo is not None:
+    logo_col, hero_col = st.columns(
+        [1, 4],
+        vertical_alignment="center"
+    )
+
     with logo_col:
-        st.image(LOGO_PATH, use_container_width=True)
+        st.image(logo, width=150)
 else:
     hero_col = st.container()
 
