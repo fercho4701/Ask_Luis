@@ -18,24 +18,8 @@ LOGO_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
 
 
 def find_logo_path():
-    """Busca un archivo llamado 'logo' (sin importar mayúsculas ni extensión)
-    primero en /assets y luego en la raíz del proyecto."""
-    skip = {".git", "venv", ".venv", "env", "node_modules", "__pycache__", "site-packages"}
-    candidates = []
-    for file in BASE_DIR.rglob("*"):
-        if any(part in skip for part in file.parts):
-            continue
-        if (
-            file.is_file()
-            and file.stem.lower() == "logo"
-            and file.suffix.lower() in LOGO_EXTENSIONS
-        ):
-            candidates.append(file)
-    if not candidates:
-        return None
-    # Prefiere la carpeta "assets" si existe; si no, el primero encontrado
-    candidates.sort(key=lambda p: (p.parent.name.lower() != "assets", len(p.parts)))
-    return candidates[0]
+    path = BASE_DIR / "logo.png"
+    return path if path.is_file() else None
 
 
 def load_logo():
