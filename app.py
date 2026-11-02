@@ -20,23 +20,30 @@ LOGO_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
 def find_logo_path():
     """Busca un archivo llamado 'logo' (sin importar mayúsculas ni extensión)
     primero en /assets y luego en la raíz del proyecto."""
-    for folder in (ASSETS_DIR, BASE_DIR):
-        if not folder.is_dir():
+    skip = {".git", "venv", ".venv", "env", "node_modules", "__pycache__", "site-packages"}
+    candidates = []
+    for file in BASE_DIR.rglob("*"):
+        if any(part in skip for part in file.parts):
             continue
-        for file in sorted(folder.iterdir()):
-            if (
-                file.is_file()
-                and file.stem.lower() == "logo"
-                and file.suffix.lower() in LOGO_EXTENSIONS
-            ):
-                return file
-    return None
+        if (
+            file.is_file()
+            and file.stem.lower() == "logo"
+            and file.suffix.lower() in LOGO_EXTENSIONS
+        ):
+            candidates.append(file)
+    if not candidates:
+        return None
+    # Prefiere la carpeta "assets" si existe; si no, el primero encontrado
+    candidates.sort(key=lambda p: (p.parent.name.lower() != "assets", len(p.parts)))
+    return candidates[0]
 
 
 def load_logo():
     path = find_logo_path()
     if path is None:
-        print(f"[logo] No se encontró ningún logo en {ASSETS_DIR}")
+        archivos = [str(p.relative_to(BASE_DIR)) for p in BASE_DIR.rglob("*")
+                    if p.is_file() and p.suffix.lower() in LOGO_EXTENSIONS][:20]
+        print(f"[logo] No se encontró 'logo' en {BASE_DIR}. Imágenes visibles: {archivos}")
         return None
     try:
         return Image.open(path).convert("RGBA")
