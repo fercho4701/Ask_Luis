@@ -1,33 +1,60 @@
-import os
+from pathlib import Path
 
 import streamlit as st
+from PIL import Image
 
 from services.knowledge_service import KnowledgeService
 from services.prompt_service import PromptService
 from llm.groq_service import GroqService
-from PIL import Image
 
 
-
-# CONFIGURACIÓN
-
-
-from pathlib import Path
+# --------------------------------------------------
+# LOGO (búsqueda tolerante: mayúsculas, extensión y carpeta)
+# --------------------------------------------------
 
 BASE_DIR = Path(__file__).resolve().parent
-LOGO_PATH = BASE_DIR / "assets" / "logo.png"
+ASSETS_DIR = BASE_DIR / "assets"
+LOGO_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
 
-logo = None
 
-if LOGO_PATH.is_file():
+def find_logo_path():
+    """Busca un archivo llamado 'logo' (sin importar mayúsculas ni extensión)
+    primero en /assets y luego en la raíz del proyecto."""
+    for folder in (ASSETS_DIR, BASE_DIR):
+        if not folder.is_dir():
+            continue
+        for file in sorted(folder.iterdir()):
+            if (
+                file.is_file()
+                and file.stem.lower() == "logo"
+                and file.suffix.lower() in LOGO_EXTENSIONS
+            ):
+                return file
+    return None
+
+
+def load_logo():
+    path = find_logo_path()
+    if path is None:
+        print(f"[logo] No se encontró ningún logo en {ASSETS_DIR}")
+        return None
     try:
-        logo = Image.open(LOGO_PATH).convert("RGBA")
+        return Image.open(path).convert("RGBA")
     except Exception as e:
-        print(f"Error cargando el logo: {e}")
+        print(f"[logo] Error cargando {path}: {e}")
+        return None
+
+
+logo = load_logo()
+
+
+# --------------------------------------------------
+# CONFIGURACIÓN
+# --------------------------------------------------
 
 st.set_page_config(
     page_title="Luis AI Recruiter",
-    page_icon=logo if logo else "🤖",
+    page_icon=logo if logo is not None else "🤖",
     layout="centered",
     initial_sidebar_state="collapsed",
 )
@@ -40,9 +67,9 @@ SUGGESTIONS = [
 ]
 
 
-
+# --------------------------------------------------
 # ESTADO DE LA APLICACIÓN
-
+# --------------------------------------------------
 
 if "dark_mode" not in st.session_state:
     st.session_state.dark_mode = True
@@ -54,9 +81,9 @@ if "pending_question" not in st.session_state:
     st.session_state.pending_question = None
 
 
-
+# --------------------------------------------------
 # ESTILO
-
+# --------------------------------------------------
 
 THEMES = {
     "dark": {
@@ -326,9 +353,9 @@ st.markdown(
 )
 
 
-
+# --------------------------------------------------
 # ENCABEZADO
-
+# --------------------------------------------------
 
 top_left, top_right = st.columns([6, 1])
 
@@ -339,11 +366,7 @@ with top_right:
         st.rerun()
 
 if logo is not None:
-    logo_col, hero_col = st.columns(
-        [1, 4],
-        vertical_alignment="center"
-    )
-
+    logo_col, hero_col = st.columns([1, 4], vertical_alignment="center")
     with logo_col:
         st.image(logo, width=150)
 else:
@@ -365,9 +388,9 @@ with hero_col:
     )
 
 
-
-# BACKEND
-
+# --------------------------------------------------
+# BACKEND (cacheado para no recargarlo en cada interacción)
+# --------------------------------------------------
 
 @st.cache_resource
 def load_backend():
@@ -376,7 +399,7 @@ def load_backend():
     llm = GroqService()
     data = knowledge.load_all()
 
-    with open("prompts/system_prompt.txt", "r", encoding="utf-8") as file:
+    with open(BASE_DIR / "prompts" / "system_prompt.txt", "r", encoding="utf-8") as file:
         system_prompt = file.read()
 
     return data, prompt_service, llm, system_prompt
@@ -385,9 +408,9 @@ def load_backend():
 data, prompt_service, llm, system_prompt = load_backend()
 
 
-
+# --------------------------------------------------
 # SUGERENCIAS (solo cuando el chat está vacío)
-
+# --------------------------------------------------
 
 if not st.session_state.messages:
     st.markdown(
@@ -402,21 +425,10 @@ if not st.session_state.messages:
                 st.rerun()
 
 
-
+# --------------------------------------------------
 # HISTORIAL DEL CHAT
+# --------------------------------------------------
 
-
-# Ya tienes esto arriba cargando el logo:
-LOGO_PATH = BASE_DIR /"assets"/"logo.png"
-logo = None
-
-if LOGO_PATH.is_file():
-    try:
-        logo = Image.open(LOGO_PATH).convert("RGBA")
-    except Exception as e:
-        print(f"Error cargando el logo: {e}")
-
-# Y aquí es donde debes cambiar LOGO_PATH por logo:
 AVATARS = {
     "user": "🧑‍💼",
     "assistant": logo.copy() if logo is not None else "🤖",
