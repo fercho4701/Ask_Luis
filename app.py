@@ -406,9 +406,20 @@ if not st.session_state.messages:
 # HISTORIAL DEL CHAT
 
 
+# Ya tienes esto arriba cargando el logo:
+LOGO_PATH = BASE_DIR / "assets" / "logo.png"
+logo = None
+
+if LOGO_PATH.is_file():
+    try:
+        logo = Image.open(LOGO_PATH).convert("RGBA")
+    except Exception as e:
+        print(f"Error cargando el logo: {e}")
+
+# Y aquí es donde debes cambiar LOGO_PATH por logo:
 AVATARS = {
     "user": "🧑‍💼",
-    "assistant": LOGO_PATH if os.path.exists(LOGO_PATH) else "🤖",
+    "assistant": logo if logo is not None else "🤖",
 }
 
 for message in st.session_state.messages:

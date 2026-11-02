@@ -1,0 +1,15 @@
+[1mdiff --git a/app.py b/app.py[m
+[1mindex 0333398..a8ce403 100644[m
+[1m--- a/app.py[m
+[1m+++ b/app.py[m
+[36m@@ -12,7 +12,9 @@[m [mfrom llm.groq_service import GroqService[m
+ [m
+ [m
+ from pathlib import Path[m
+[31m-LOGO_PATH = str(Path(__file__).resolve().parent / "assets" / "logo.png")[m
+[32m+[m
+[32m+[m[32mBASE_DIR = Path(__file__).resolve().parent[m
+[32m+[m[32mLOGO_PATH = BASE_DIR / "assets" / "logo.png"[m
+ [m
+ st.set_page_config([m
+     page_title="Luis AI Recruiter",[m
