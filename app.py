@@ -419,7 +419,7 @@ if LOGO_PATH.is_file():
 # Y aquí es donde debes cambiar LOGO_PATH por logo:
 AVATARS = {
     "user": "🧑‍💼",
-    "assistant": logo if logo is not None else "🤖",
+    "assistant": logo.copy() if logo is not None else "🤖",
 }
 
 for message in st.session_state.messages:
