@@ -1,5 +1,9 @@
 from pathlib import Path
 
+import base64
+import io
+from pathlib import Path
+
 import streamlit as st
 from PIL import Image
 
@@ -18,25 +22,64 @@ LOGO_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp"}
 
 
 def find_logo_path():
-    path = BASE_DIR / "logo.png"
-    return path if path.is_file() else None
+    """Busca un archivo llamado 'logo' (sin importar mayúsculas ni extensión)
+    primero en /assets y luego en la raíz del proyecto."""
+    skip = {".git", "venv", ".venv", "env", "node_modules", "__pycache__", "site-packages"}
+    candidates = []
+    for file in BASE_DIR.rglob("*"):
+        if any(part in skip for part in file.parts):
+            continue
+        if (
+            file.is_file()
+            and file.stem.lower() == "logo"
+            and file.suffix.lower() in LOGO_EXTENSIONS
+        ):
+            candidates.append(file)
+    if not candidates:
+        return None
+    # Prefiere la carpeta "assets" si existe; si no, el primero encontrado
+    candidates.sort(key=lambda p: (p.parent.name.lower() != "assets", len(p.parts)))
+    return candidates[0]
+
+
+LOGO_DEBUG = {"estado": "ok", "detalle": ""}
 
 
 def load_logo():
     path = find_logo_path()
     if path is None:
         archivos = [str(p.relative_to(BASE_DIR)) for p in BASE_DIR.rglob("*")
-                    if p.is_file() and p.suffix.lower() in LOGO_EXTENSIONS][:20]
-        print(f"[logo] No se encontró 'logo' en {BASE_DIR}. Imágenes visibles: {archivos}")
+                    if p.is_file() and p.suffix.lower() in LOGO_EXTENSIONS
+                    and ".git" not in p.parts][:20]
+        LOGO_DEBUG["estado"] = "no_encontrado"
+        LOGO_DEBUG["detalle"] = f"Carpeta base: {BASE_DIR}\nImágenes que ve el servidor: {archivos}"
         return None
     try:
-        return Image.open(path).convert("RGBA")
+        img = Image.open(path)
+        img.load()
+        return img.convert("RGBA")
     except Exception as e:
-        print(f"[logo] Error cargando {path}: {e}")
+        size = path.stat().st_size
+        LOGO_DEBUG["estado"] = "error_al_abrir"
+        LOGO_DEBUG["detalle"] = f"Archivo: {path} ({size} bytes)\nError: {e}"
         return None
 
 
 logo = load_logo()
+
+
+def to_data_uri(img, max_size=400):
+    """Convierte la imagen a data URI (base64) para incrustarla en la página
+    sin pasar por el servidor de archivos de Streamlit."""
+    img = img.copy()
+    img.thumbnail((max_size, max_size))
+    buffer = io.BytesIO()
+    img.save(buffer, format="PNG")
+    encoded = base64.b64encode(buffer.getvalue()).decode("utf-8")
+    return f"data:image/png;base64,{encoded}"
+
+
+logo_uri = to_data_uri(logo) if logo is not None else None
 
 
 # --------------------------------------------------
@@ -211,12 +254,18 @@ st.markdown(
     }}
 
     /* ---------- LOGO ---------- */
-    [data-testid="stImage"] img {{
+    .logo-img {{
+        width: 150px;
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+    }}
+    .logo-img, [data-testid="stImage"] img {{
         border: none !important;
         border-radius: 0 !important;
         box-shadow: none !important;
         background: transparent !important;
-        
+        {"mix-blend-mode: screen;" if st.session_state.dark_mode else ""}
     }}
 
     /* ---------- SUGERENCIAS ---------- */
@@ -359,9 +408,17 @@ with top_right:
 if logo is not None:
     logo_col, hero_col = st.columns([1, 4], vertical_alignment="center")
     with logo_col:
-     st.image(str(find_logo_path()), width=150)
+        st.markdown(
+            f'<img class="logo-img" src="{logo_uri}" alt="Logo">',
+            unsafe_allow_html=True,
+        )
 else:
     hero_col = st.container()
+    # Diagnóstico temporal: bórralo cuando el logo ya aparezca
+    st.warning(
+        f"No se pudo cargar el logo ({LOGO_DEBUG['estado']}).\n\n"
+        f"{LOGO_DEBUG['detalle']}"
+    )
 
 with hero_col:
     st.markdown(
@@ -422,7 +479,7 @@ if not st.session_state.messages:
 
 AVATARS = {
     "user": "🧑‍💼",
-    "assistant": logo.copy() if logo is not None else "🤖",
+    "assistant": logo_uri if logo_uri is not None else "🤖",
 }
 
 for message in st.session_state.messages:
