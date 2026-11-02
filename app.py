@@ -407,7 +407,7 @@ if not st.session_state.messages:
 
 
 # Ya tienes esto arriba cargando el logo:
-LOGO_PATH = BASE_DIR / "assets" / "logo.png"
+LOGO_PATH = BASE_DIR /"assets"/"logo.png"
 logo = None
 
 if LOGO_PATH.is_file():
