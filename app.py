@@ -232,7 +232,7 @@ st.markdown(
         border-radius: 0 !important;
         box-shadow: none !important;
         background: transparent !important;
-        {"mix-blend-mode: screen;" if st.session_state.dark_mode else ""}
+        
     }}
 
     /* ---------- SUGERENCIAS ---------- */
@@ -375,7 +375,7 @@ with top_right:
 if logo is not None:
     logo_col, hero_col = st.columns([1, 4], vertical_alignment="center")
     with logo_col:
-        st.image(logo, width=150)
+     st.image(str(find_logo_path()), width=150)
 else:
     hero_col = st.container()
 
